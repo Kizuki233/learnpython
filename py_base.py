@@ -90,6 +90,7 @@ a.sort()
 print(a)
 
 s='abc'
+#string和tuple是不可变的
 print(s.replace('a','A'))  #replace 创建了新的字符串'Abc'
 print(s)
 
@@ -137,6 +138,7 @@ print(calc(*nums))
 #组合参数顺序：必选参数、默认参数、可变参数、命名关键字参数和关键字参数。
 
 #尾递归 汉诺塔 斐波那契
+#改成非尾递归
 def fact(n):
 	return fact_iter(n,1)
 def fact_iter(num,product):
@@ -227,6 +229,9 @@ def str2int(s):
     return reduce(lambda x, y: x * 10 + y, map(char2num, s))
 
 
+# Python的iterator是一个惰性序列，意思是表达式和变量绑定(比如：调用iter()得到了一个iterator并赋值给一个变量)后不会立即进行求值，
+# 而是当你用到其中某些元素的时候才去求某元素对的值(比如next()访问到某元素才去实际计算某元素的值)。 惰性是指，你不主动去遍历它，就不会计算其中元素的值。
+#filter与map使用方式类似
 #filter求素数 惰性过滤
 def odd_iter():
 	n=1
@@ -288,7 +293,8 @@ import test
 print(__name__)
 
 #面向对象 初始化函数
-#类里面的变量前面加上__变成私有的
+#类里面的变量前面加上__变成私有的 self创建对象
+# 变量名类似__xxx__的，也就是以双下划线开头，并且以双下划线结尾的，是特殊变量
 class Student(object):
 	def __init__(self,name,score):
 		self.__name=name
@@ -301,6 +307,7 @@ brat=Student('甲贺忍蛙',90)
 brat.__name=80
 brat.print()
 
+# 这就是动态语言的“鸭子类型”，它并不要求严格的继承体系，一个对象只要“看起来像鸭子，走起路来像鸭子”，那它就可以被看做是鸭子。
 #动态语言 鸭子类型 多态 isinstance(dog,Animal)
 #getattr()  setattr()  hasattr()
 #一个类的属性(类似静态)
